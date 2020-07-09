@@ -32,12 +32,18 @@ function Board() {
 
     // <Tile color={color} />
     const tiles = randomColors.map((colors, i) =>
-        <Tile colors={colors} i={i}             key={image[i]} image={image[i]}/>
+        <Tile 
+        colors={colors} 
+        i={i}             
+        key={image[i]} 
+        image={image[i]}/>
     )
+
+    const pairs = tiles.concat([...tiles])
 
     return (
         <div className="board">
-            {shuffle(tiles)}
+            {shuffle(pairs)}
         </div>
     )
         

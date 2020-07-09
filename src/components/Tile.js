@@ -5,8 +5,11 @@ import './Tile.css';
 function Tile(props) {
     const { colors, image } = props
     const styles = {
-        // backgroundColor: `${colors}`,
-        background: `url(${process.env.PUBLIC_URL}/ac/${ image }) no-repeat ${colors}`
+        backgroundColor: `${colors}`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/ac/${ image })`,
+        // backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '10% 15%'
     }
 
     return (
