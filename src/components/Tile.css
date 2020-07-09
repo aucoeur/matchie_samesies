@@ -1,0 +1,8 @@
+.tile {
+    width: 125px;
+    height: 220px;
+}
+
+.image {
+    max-width: 100px;
+}
