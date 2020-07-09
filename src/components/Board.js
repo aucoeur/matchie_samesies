@@ -1,5 +1,6 @@
 import React from 'react';
 import randomColor from 'randomcolor';
+import shuffle from 'shuffle-array';
 
 import Tile from './Tile';
 
@@ -36,7 +37,7 @@ function Board() {
 
     return (
         <div className="board">
-            {tiles}
+            {shuffle(tiles)}
         </div>
     )
         
