@@ -1,12 +1,12 @@
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { flipCard } from '../actions'
 
 import './Card.css';
 
 function Card(props) {
-    const { color, image, onClick, i, isFront } = props
+    const { color, image, onClick, i, isFront} = props
 
     const front = {
         backgroundColor: `${color}`,
@@ -21,10 +21,11 @@ function Card(props) {
     return (
         <div
             id={i}
-            onClick={() => {
-                // console.log({isFront})
-                flipCard(i)
-            }}
+            onClick={onClick
+                // () => {
+                // // console.log({isFront})
+                // flipCard(i)}
+            }
             className="card" 
             style={isFront ? front : back }> 
         </div>
@@ -36,7 +37,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    flipCard: id => dispatch(flipCard(id))
+    onClick: i => dispatch(flipCard(i))
 
 })
 

@@ -21,7 +21,6 @@ export function shuffleCards(cards) {
 };
 
 export function flipCard(index) {
-    console.log('flip')
     return { 
         type: FLIP_CARD,
         index

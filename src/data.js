@@ -26,8 +26,8 @@ const randomCards = randomColors.map((color, i) => {
     }
 })
 
-const backColor = randomColor(
-    {luminosity: 'dark', hue: 'blue'});
+// const backColor = randomColor(
+    // {luminosity: 'dark', hue: 'blue'});
 
 const cardPairs = [...randomCards, ...randomCards]
 
