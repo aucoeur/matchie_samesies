@@ -3,7 +3,16 @@
     height: 200px;
     background-size: 'contain';
     background-repeat: 'no-repeat';
-    background-position: '10% 25%'
+    background-position: '10% 25%';
+    border-radius: 10px;
+}
+
+.card__front {
+
+}
+
+.card__back {
+    
 }
 
 .image {

@@ -16,20 +16,20 @@ export const CardState = {
 export function shuffleCards(cards) {
     return { 
         type: SHUFFLE_CARDS,
-        cards
+        payload: { cards }
      };
 };
 
-export function flipCard(index) {
+export function flipCard(index, check=true) {
     return { 
         type: FLIP_CARD,
-        index
+        payload: { index, check }
     };
 };
 
-export function setCardState(status) {
+export function setCardState(status, index) {
     return {
         type: SET_CARD_STATE,
-        status
+        payload: { status, index }
     }
 }

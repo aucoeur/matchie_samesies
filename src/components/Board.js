@@ -1,37 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import shuffle from 'shuffle-array';
-import { flipCard } from '../actions';
+
 import Card from './Card';
 
-import cardPairs from '../data';
 import './Board.css';
 
 
-function Board() {
+function Board(props) {
 
-    const cards = cardPairs.map((card, i) => {
+    const cards = props.cards.map((card, i) => {
         return (
             <Card 
-                color={card.color}
-                image={card.image}
                 i={i}             
                 key={card.image+i}
-                onClick={() => {flipCard(i)}}
-                isFront={card.isFront}
             />
         )
         
     })
 
-    const shuffled = shuffle(cards)
+    // const shuffled = shuffle(cards)
+
     return (
         <div className="board">
-            {shuffled}
+            {cards}
         </div>
     )
         
 }
 
+const mapStateToProps = state => {
+  return ({ 
+      cards: state.game.cards
+   })
+}
+
+const mapDispatchToProps = () => {
+    return {
+        // put shuffle 
+    }
+}
 
 
-export default Board;
+
+export default connect(mapStateToProps, mapDispatchToProps())(Board);

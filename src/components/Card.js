@@ -6,7 +6,10 @@ import { flipCard } from '../actions'
 import './Card.css';
 
 function Card(props) {
-    const { color, image, onClick, i, isFront} = props
+    const { i, flipCard, cards } = props
+    const { color, image, isFront } = cards[i]
+
+    console.log(cards[i])
 
     const front = {
         backgroundColor: `${color}`,
@@ -21,24 +24,21 @@ function Card(props) {
     return (
         <div
             id={i}
-            onClick={onClick
-                // () => {
-                // // console.log({isFront})
-                // flipCard(i)}
-            }
+            onClick={() => flipCard(i) }
             className="card" 
-            style={isFront ? front : back }> 
+            style={ isFront ? front : back }> 
         </div>
     )
 }
 
 const mapStateToProps = state => {
-  return {}
+  return ({ 
+      cards: state.game.cards
+   })
 }
 
-const mapDispatchToProps = dispatch => ({
-    onClick: i => dispatch(flipCard(i))
+const mapDispatchToProps = () => {
+    return { flipCard }
+}
 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps())(Card);

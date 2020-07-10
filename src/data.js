@@ -22,13 +22,16 @@ const randomCards = randomColors.map((color, i) => {
     return {
         color, 
         image: images[i],
-        isFront: false
+        isFront: true
     }
 })
 
 // const backColor = randomColor(
     // {luminosity: 'dark', hue: 'blue'});
 
-const cardPairs = [...randomCards, ...randomCards]
+//  garbage way to deep copy
+const secondCards = JSON.parse(JSON.stringify(randomCards))
+
+const cardPairs = [...randomCards, ...secondCards]
 
 export default cardPairs;
