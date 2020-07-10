@@ -1,9 +1,11 @@
-import { SHUFFLE_CARDS, FLIP_CARD, SET_CARD_STATE } from '../actions';
+import { SHUFFLE_CARDS, FLIP_CARD } from '../actions';
 import shuffle from 'shuffle-array';
 import cardPairs from '../data';
 
 const initState = {
     cards: cardPairs,
+    selectedFirst: null,
+    selectedSecond: null,
     selectedCard: null
 }
 
@@ -16,10 +18,6 @@ const gameReducer = (state = initState, action) => {
             const shuffledCards = shuffle(cardPairs)
             return { ...state, cards: shuffledCards }
 
-        // case SET_CARD_STATE:
-        //     const newState = { ...state }
-        //     newState.cards[action.payload.index].[put somethign else] = action.payload.status
-        //     return newState
         case FLIP_CARD:
             const cardSet = [...state.cards]
 
@@ -27,15 +25,15 @@ const gameReducer = (state = initState, action) => {
             
             let selectedCard = { ...state.selectedCard }
 
-
-            if (state.selectedCard != null) {
+            if (state.selectedCard) {
                 if (selectedCard.image != cardSet[action.payload.index].image) {
-                    // more gross
                     cardSet[selectedCard.index].isFront = false
                     cardSet[action.payload.index].isFront = false 
 
                     selectedCard = null
                 } else {
+                    cardSet[selectedCard.index].matched = true
+                    cardSet[action.payload.index].matched = true 
                     selectedCard = null
                 }
             } else {
