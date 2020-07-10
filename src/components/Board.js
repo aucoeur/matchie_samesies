@@ -25,6 +25,7 @@ function Board(props) {
     return (
         <div className="board">
             {cards}
+            {/* {shuffled} */}
         </div>
     )
         

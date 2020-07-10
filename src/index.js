@@ -6,11 +6,11 @@ import { createStore } from 'redux';
 
 import gameReducer from './reducers';
 
-import './index.css';
 import App from './App';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(gameReducer)
+export const store = createStore(gameReducer)
 
 ReactDOM.render(
   <React.StrictMode>

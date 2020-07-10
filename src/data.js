@@ -1,4 +1,5 @@
 import randomColor from 'randomcolor';
+import shuffle from 'shuffle-array';
 
 const randomColors = randomColor({
     count: 8,
@@ -35,4 +36,4 @@ const secondCards = JSON.parse(JSON.stringify(randomCards))
 
 const cardPairs = [...randomCards, ...secondCards]
 
-export default cardPairs;
+export default shuffle(cardPairs);
