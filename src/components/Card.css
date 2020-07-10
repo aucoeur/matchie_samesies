@@ -1,0 +1,11 @@
+.card {
+    width: 125px;
+    height: 200px;
+    background-size: 'contain';
+    background-repeat: 'no-repeat';
+    background-position: '10% 25%'
+}
+
+.image {
+    max-width: 100px;
+}

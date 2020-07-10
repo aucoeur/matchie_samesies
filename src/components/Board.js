@@ -1,52 +1,37 @@
 import React from 'react';
-import randomColor from 'randomcolor';
 import shuffle from 'shuffle-array';
+import { flipCard } from '../actions';
+import Card from './Card';
 
-import Tile from './Tile';
-
+import cardPairs from '../data';
 import './Board.css';
 
 
 function Board() {
-    const randomColors = randomColor({
-        count: 8,
-        luminosity: 'bright',
-        // format: 'rgb' // e.g. 'rgb(225,200,20)'
-        });
 
-    const images = [
-        "daisy_mae.png",
-        "derwin.png",
-        "flora.png",
-        "gaston.png",
-        "hans.png",
-        "leif.png",
-        "pascal.png",
-        "truffles.png"
-    ]
+    const cards = cardPairs.map((card, i) => {
+        return (
+            <Card 
+                color={card.color}
+                image={card.image}
+                i={i}             
+                key={card.image+i}
+                onClick={() => {flipCard(i)}}
+                isFront={card.isFront}
+            />
+        )
+        
+    })
 
-    const image = images.map((img, i) => {
-        return (img)
-    }
-    )
-
-    // <Tile color={color} />
-    const tiles = randomColors.map((colors, i) =>
-        <Tile 
-        colors={colors} 
-        i={i}             
-        key={image[i]} 
-        image={image[i]}/>
-    )
-
-    const pairs = tiles.concat([...tiles])
-
+    const shuffled = shuffle(cards)
     return (
         <div className="board">
-            {shuffle(pairs)}
+            {shuffled}
         </div>
     )
         
 }
+
+
 
 export default Board;
