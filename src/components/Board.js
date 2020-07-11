@@ -23,8 +23,11 @@ function Board(props) {
     // const shuffled = shuffle(cards)
 
     return (
-        <div className="board">
-            {cards}
+        <div>
+            <div className="board">
+                {cards}
+                {/* {shuffled} */}
+            </div>
         </div>
     )
         

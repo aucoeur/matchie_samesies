@@ -17,17 +17,19 @@ const images = [
     "pascal.png",
     "truffles.png"
 ]
+const backSide = randomColor(
+    {luminosity: 'dark', hue: 'blue'});
 
 const randomCards = randomColors.map((color, i) => {
     return {
         color, 
         image: images[i],
-        isFront: true
+        isFront: true,
+        backColor: backSide,
+        matched: false
     }
 })
 
-// const backColor = randomColor(
-    // {luminosity: 'dark', hue: 'blue'});
 
 //  garbage way to deep copy
 const secondCards = JSON.parse(JSON.stringify(randomCards))
