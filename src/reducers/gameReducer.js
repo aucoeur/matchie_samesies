@@ -23,11 +23,6 @@ const gameReducer = (state = initState, action) => {
             const shuffledCards = shuffle(cardPairs)
             return { ...state, cards: shuffledCards }
 
-        // case SET_CARD_STATE:
-        //     const newState = { ...state }
-        //     newState.cards[action.payload.index].[put somethign else] = action.payload.status
-        //     return newState
-
         case FLIP_CARD:
             const cardSet = [...state.cards]
             
@@ -62,7 +57,7 @@ const gameReducer = (state = initState, action) => {
 
                         console.log(`Second ${selectedCard.image} - No match`)
                         selectedFirst = null
-                        selectedCard = null
+                        // selectedCard = null
                     } else {
                         console.log('MATCH')
                         cardSet[selectedFirst.index].matched = true
@@ -92,11 +87,13 @@ const gameReducer = (state = initState, action) => {
         //             cardSet[selectedCard.index].isFront = false
         //             cardSet[action.payload.index].isFront = false 
 
-        //             selectedCard = null
+        //             // selectedCard = null
+        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
         //         } else {
-        //             // cardSet[selectedCard.index].matched = true
-        //             // cardSet[action.payload.index].matched = true 
-        //             selectedCard = null
+        //             cardSet[selectedCard.index].matched = true
+        //             cardSet[action.payload.index].matched = true 
+        //             // selectedCard = null
+        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
         //         }
         //     } else {
         //         selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
