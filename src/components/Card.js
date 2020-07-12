@@ -24,10 +24,10 @@ function Card(props) {
     return (
         <div
             id={i}
-            // onClick={ matched ? '' : () => {
-            //     return flipCard(i);
-            // } }
-            onClick={() => flipCard(i)}
+            onClick={ matched ? null : () => {
+                return flipCard(i);
+            } }
+            // onClick={() => flipCard(i)}
             className="card" 
             style={ isFront ? front : back }> 
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import shuffle from 'shuffle-array';
+// import shuffle from 'shuffle-array';
 
 import Card from './Card';
 
