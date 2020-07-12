@@ -2,14 +2,6 @@
 
 export const SHUFFLE_CARDS = 'SHUFFLE_CARDS';
 export const FLIP_CARD = 'FLIP_CARD';
-export const SET_CARD_STATE = 'SET_CARD_STATE';
-
-// Other Constants
-export const CardState = {
-    FACE_UP: 'FACE_UP',
-    FACE_DOWN: 'FACE_DOWN',
-    MATCHED_PAIR: 'MATCHED_PAIR'
-};
 
 // Action Creators
 
@@ -27,9 +19,10 @@ export function flipCard(index) {
     };
 };
 
-export function setCardState(status, index) {
-    return {
-        type: SET_CARD_STATE,
-        payload: { status, index }
+export function flipCardTimeout(index) {
+    return function (dispatch) {
+        setTimeout(() => {
+            dispatch(flipCard(index))
+        }, 1000)
     }
 }

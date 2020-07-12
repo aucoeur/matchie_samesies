@@ -27,7 +27,6 @@ function Card(props) {
             onClick={ matched ? null : () => {
                 return flipCard(i);
             } }
-            // onClick={() => flipCard(i)}
             className="card" 
             style={ isFront ? front : back }> 
         </div>

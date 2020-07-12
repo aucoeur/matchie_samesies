@@ -25,7 +25,7 @@ const randomCards = randomColors.map((color, i) => {
     return {
         color, 
         image: images[i],
-        isFront: true,
+        isFront: false,
         backColor: backSide,
         matched: false
     }

@@ -1,16 +1,14 @@
-import { SHUFFLE_CARDS, FLIP_CARD, flipCard } from '../actions';
+import { SHUFFLE_CARDS, FLIP_CARD } from '../actions'; //
 import shuffle from 'shuffle-array';
 import cardPairs from '../data';
 
-import { store } from '../index';
+// import { store } from '../index';
 // import { useDispatch } from 'react-redux';
 
 const initState = {
     cards: cardPairs,
     selectedCard: null,
     selectedFirst: null,
-    selectedSecond: null
-
 }
 
 // 
@@ -31,9 +29,12 @@ const gameReducer = (state = initState, action) => {
 
             let selectedCard = { ...state.selectedCard }
             let selectedFirst = { ...state.selectedFirst }
-            let selectedSecond = { ...state.selectedSecond }
 
             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+
+            // if (!(state.selectedFirst)) {
+            //     console.log(state.selectedFirst)
+            // }
 
             // if selectedFirst is null
             if (selectedCard && !state.selectedFirst) {
@@ -44,33 +45,29 @@ const gameReducer = (state = initState, action) => {
 
             // if selectedFirst not null
             } else if (selectedCard && state.selectedFirst) {
-                // if selectedCard not the same card as selectedFirst, add to second
-                if (selectedCard.index != selectedFirst.index) {
-                    if (selectedCard.image != selectedFirst.image) {
-                        // cardSet[selectedFirst.index].isFront = false
-                        // cardSet[selectedCard.index].isFront = false
-
-                        // setTimeout(() => {
-                        //     store.dispatch(flipCard(selectedCard.index))
-                        //     store.dispatch(flipCard(selectedFirst.index))
-                        // }, 1000) 
-
+                // if selectedCard not the exact card as selectedFirst
+                if (selectedCard.index !== selectedFirst.index) {
+                    // if current selected and first don't match
+                    if (selectedCard.image !== state.selectedFirst.image) {
+                        cardSet[state.selectedFirst.index].isFront = false
+                        // selectedFirst = selectedCard
+                        cardSet[selectedCard.index].isFront = false
+                        console.log(selectedFirst.image, selectedCard.image)
                         console.log(`Second ${selectedCard.image} - No match`)
-                        selectedFirst = null
-                        // selectedCard = null
+                        return { ...state, cards: cardSet, selectedCard:null, selectedFirst: null}
                     } else {
+                        console.log(selectedFirst.image, selectedCard.image)
                         console.log('MATCH')
                         cardSet[selectedFirst.index].matched = true
                         cardSet[selectedCard.index].matched = true 
-                        selectedCard = null
-                        selectedFirst = null
+                        return { ...state, cards: cardSet, selectedCard: null, selectedFirst: null}
                     }
                 } else {
                     console.log('SAME CARD')
                 }
             }
 
-            return { ...state, cards: cardSet, selectedCard: selectedCard, selectedFirst: selectedFirst, selectedSecond: selectedSecond }
+            return { ...state, cards: cardSet, selectedCard: selectedCard, selectedFirst: selectedFirst}
 
 
         // case FLIP_CARD:
