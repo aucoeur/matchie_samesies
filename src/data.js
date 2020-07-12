@@ -21,8 +21,6 @@ const images = [
 const backSide = randomColor(
     {luminosity: 'dark', hue: 'blue'});
 
-const backSide = randomColor({luminosity: 'dark', hue: 'blue'});
-
 const randomCards = randomColors.map((color, i) => {
     return {
         color, 

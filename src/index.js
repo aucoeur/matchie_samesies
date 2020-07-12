@@ -11,11 +11,7 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-<<<<<<< HEAD
-export const store = createStore(gameReducer)
-=======
 export const store = createStore(gameReducer, applyMiddleware(thunk))
->>>>>>> refactor
 
 ReactDOM.render(
   <React.StrictMode>
