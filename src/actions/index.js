@@ -20,10 +20,10 @@ export function shuffleCards(cards) {
      };
 };
 
-export function flipCard(index, check=true) {
+export function flipCard(index) {
     return { 
         type: FLIP_CARD,
-        payload: { index, check }
+        payload: { index }
     };
 };
 

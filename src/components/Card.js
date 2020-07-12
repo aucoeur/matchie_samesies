@@ -9,7 +9,7 @@ function Card(props) {
     const { i, flipCard, cards } = props
     const { color, image, isFront, backColor, matched } = cards[i]
 
-    console.log(cards[i])
+    // console.log(cards[i])
 
     const front = {
         backgroundColor: `${color}`,
@@ -17,16 +17,17 @@ function Card(props) {
     }
 
     const back = {
-        backgroundColor: `${backColor}`,
+        backgroundColor: `${backColor}`, 
         backgroundImage: `url(${process.env.PUBLIC_URL}/ac/leaf_mask.png)`
     }
 
     return (
         <div
             id={i}
-            onClick={ matched ? '' : () => {
+            onClick={ matched ? null : () => {
                 return flipCard(i);
             } }
+            // onClick={() => flipCard(i)}
             className="card" 
             style={ isFront ? front : back }> 
         </div>

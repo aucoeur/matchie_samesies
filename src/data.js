@@ -18,6 +18,8 @@ const images = [
     "pascal.png",
     "truffles.png"
 ]
+const backSide = randomColor(
+    {luminosity: 'dark', hue: 'blue'});
 
 const backSide = randomColor({luminosity: 'dark', hue: 'blue'});
 
@@ -25,7 +27,7 @@ const randomCards = randomColors.map((color, i) => {
     return {
         color, 
         image: images[i],
-        isFront: false,
+        isFront: true,
         backColor: backSide,
         matched: false
     }

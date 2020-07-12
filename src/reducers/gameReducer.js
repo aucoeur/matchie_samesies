@@ -1,20 +1,22 @@
 import { SHUFFLE_CARDS, FLIP_CARD, flipCard } from '../actions';
-// import { useDispatch } from 'react-redux';
-import { store } from '../index'
 import shuffle from 'shuffle-array';
 import cardPairs from '../data';
 
+import { store } from '../index';
+// import { useDispatch } from 'react-redux';
+
 const initState = {
     cards: cardPairs,
+    selectedCard: null,
     selectedFirst: null,
-    selectedSecond: null,
-    selectedCard: null
+    selectedSecond: null
+
 }
 
 // 
 
 const gameReducer = (state = initState, action) => {
-
+    // const dispatch = useDispatch
     switch (action.type) {
         case SHUFFLE_CARDS:
             const cardPairs = state.cards
@@ -23,35 +25,81 @@ const gameReducer = (state = initState, action) => {
 
         case FLIP_CARD:
             const cardSet = [...state.cards]
-
-            // flip action on click
-            cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
             
+            // flip card action
+            cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
+
             let selectedCard = { ...state.selectedCard }
+            let selectedFirst = { ...state.selectedFirst }
+            let selectedSecond = { ...state.selectedSecond }
 
-            if (state.selectedCard) {
-                if (selectedCard.image != cardSet[action.payload.index].image) {
-                    // setTimeout(()=> {
-                    //     console.log(selectedCard.index, action.payload.index)
-                    //     store.dispatch(flipCard(selectedCard.index))
-                    //     store.dispatch(flipCard(action.payload.index))
-                    // }, 1000)
+            selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
 
-                    cardSet[selectedCard.index].isFront = false
-                    cardSet[action.payload.index].isFront = false 
+            // if selectedFirst is null
+            if (selectedCard && !state.selectedFirst) {
+                // flip card action
+                // cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
+                selectedFirst = selectedCard
+                console.log(`First ${selectedFirst.image}`)
 
-                    selectedCard = null
+            // if selectedFirst not null
+            } else if (selectedCard && state.selectedFirst) {
+                // if selectedCard not the same card as selectedFirst, add to second
+                if (selectedCard.index != selectedFirst.index) {
+                    if (selectedCard.image != selectedFirst.image) {
+                        // cardSet[selectedFirst.index].isFront = false
+                        // cardSet[selectedCard.index].isFront = false
+
+                        // setTimeout(() => {
+                        //     store.dispatch(flipCard(selectedCard.index))
+                        //     store.dispatch(flipCard(selectedFirst.index))
+                        // }, 1000) 
+
+                        console.log(`Second ${selectedCard.image} - No match`)
+                        selectedFirst = null
+                        // selectedCard = null
+                    } else {
+                        console.log('MATCH')
+                        cardSet[selectedFirst.index].matched = true
+                        cardSet[selectedCard.index].matched = true 
+                        selectedCard = null
+                        selectedFirst = null
+                    }
                 } else {
-                    cardSet[selectedCard.index].matched = true
-                    cardSet[action.payload.index].matched = true 
-                    selectedCard = null
+                    console.log('SAME CARD')
                 }
-            } else {
-                selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
             }
 
+            return { ...state, cards: cardSet, selectedCard: selectedCard, selectedFirst: selectedFirst, selectedSecond: selectedSecond }
 
-            return { ...state, cards: cardSet, selectedCard }
+
+        // case FLIP_CARD:
+        //     const cardSet = [...state.cards]
+
+        //     // flips the card on click
+        //     cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
+            
+        //     let selectedCard = { ...state.selectedCard }
+
+        //     if (state.selectedCard != null) {
+        //         if (selectedCard.image != cardSet[action.payload.index].image) {
+        //             // more gross
+        //             cardSet[selectedCard.index].isFront = false
+        //             cardSet[action.payload.index].isFront = false 
+
+        //             // selectedCard = null
+        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+        //         } else {
+        //             cardSet[selectedCard.index].matched = true
+        //             cardSet[action.payload.index].matched = true 
+        //             // selectedCard = null
+        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+        //         }
+        //     } else {
+        //         selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+        //     }
+
+        //     return { ...state, cards: cardSet, selectedCard } //, selectedFirst, selectedSecond }
 
         default:
             return state
