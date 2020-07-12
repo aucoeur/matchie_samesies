@@ -9,8 +9,9 @@ import './Board.css';
 
 
 function Board(props) {
-
-    const cards = props.cards.map((card, i) => {
+    const { cards, selectedCard } = props
+    
+    const cardSet = cards.map((card, i) => {
         return (
             <Card 
                 i={i}             
@@ -24,8 +25,9 @@ function Board(props) {
 
     return (
         <div>
+            <h3>Selected Card: { selectedCard ? selectedCard.image : ''}</h3>
             <div className="board">
-                {cards}
+                {cardSet}
                 {/* {shuffled} */}
             </div>
         </div>
@@ -35,7 +37,8 @@ function Board(props) {
 
 const mapStateToProps = state => {
   return ({ 
-      cards: state.game.cards
+      cards: state.game.cards,
+      selectedCard: state.game.selectedCard
    })
 }
 
