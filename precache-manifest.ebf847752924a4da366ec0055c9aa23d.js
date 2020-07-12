@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b08d67e101f8e6ce81bfc59723752a52",
+    "revision": "a685f05e4665047a485146e5317b6f56",
     "url": "/samesies/index.html"
   },
   {
-    "revision": "d352a4d43cf2a5f4e6c8",
+    "revision": "97a033537bc529f28e10",
     "url": "/samesies/static/css/main.8ba33518.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/samesies/static/js/2.520ed415.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d352a4d43cf2a5f4e6c8",
-    "url": "/samesies/static/js/main.b2c4800b.chunk.js"
+    "revision": "97a033537bc529f28e10",
+    "url": "/samesies/static/js/main.514ec843.chunk.js"
   },
   {
     "revision": "7ca707e4b55ffe9ed9f2",
