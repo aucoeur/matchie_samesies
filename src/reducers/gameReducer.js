@@ -1,9 +1,8 @@
-import { SHUFFLE_CARDS, FLIP_CARD } from '../actions'; //
+import { SHUFFLE_CARDS, FLIP_CARD, UNFLIP, flipCard, unflipCard } from '../actions'; //
 import shuffle from 'shuffle-array';
 import cardPairs from '../data';
 
-// import { store } from '../index';
-// import { useDispatch } from 'react-redux';
+import { store } from '../index';
 
 const initState = {
     cards: cardPairs,
@@ -11,92 +10,104 @@ const initState = {
     selectedFirst: null,
 }
 
-// 
-
 const gameReducer = (state = initState, action) => {
-    // const dispatch = useDispatch
     switch (action.type) {
         case SHUFFLE_CARDS:
-            const cardPairs = state.cards
+            const cardPairs = initState.cards
             const shuffledCards = shuffle(cardPairs)
             return { ...state, cards: shuffledCards }
-
+        case UNFLIP:
+            // unflips card at index
+            console.log('unflip')
+            return state
         case FLIP_CARD:
-            const cardSet = [...state.cards]
+            console.log(FLIP_CARD)
+            const index = action.payload.index
             
-            // flip card action
-            cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
-
-            let selectedCard = { ...state.selectedCard }
-            let selectedFirst = { ...state.selectedFirst }
-
-            selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
-
-            // if (!(state.selectedFirst)) {
-            //     console.log(state.selectedFirst)
-            // }
-
-            // if selectedFirst is null
-            if (selectedCard && !state.selectedFirst) {
+            // if the index = first selected
+            if (state.selectedFirst == null) {
+                const cardSet = [...state.cards]
+                
                 // flip card action
-                // cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
-                selectedFirst = selectedCard
-                console.log(`First ${selectedFirst.image}`)
-
-            // if selectedFirst not null
-            } else if (selectedCard && state.selectedFirst) {
-                // if selectedCard not the exact card as selectedFirst
-                if (selectedCard.index !== selectedFirst.index) {
-                    // if current selected and first don't match
-                    if (selectedCard.image !== state.selectedFirst.image) {
-                        cardSet[state.selectedFirst.index].isFront = false
-                        // selectedFirst = selectedCard
-                        cardSet[selectedCard.index].isFront = false
-                        console.log(selectedFirst.image, selectedCard.image)
-                        console.log(`Second ${selectedCard.image} - No match`)
-                        return { ...state, cards: cardSet, selectedCard:null, selectedFirst: null}
-                    } else {
-                        console.log(selectedFirst.image, selectedCard.image)
-                        console.log('MATCH')
-                        cardSet[selectedFirst.index].matched = true
-                        cardSet[selectedCard.index].matched = true 
-                        return { ...state, cards: cardSet, selectedCard: null, selectedFirst: null}
-                    }
+                cardSet[index].isFront = !cardSet[index].isFront
+                return { ...state, cards: cardSet, selectedFirst: index }
+            } else if ( state.selectedFirst === index ) {
+                return state
+            } else {
+                if (state.cards[index].image === state.cards[state.selectedFirst].image) {
+                    // cards match!
+                    return { ...state, selectedFirst: null, 
+                        cards: state.cards.map((card) => {
+                            if (card.index === index || card.index === state.selectedFirst) {
+                                return { ...card, matched: true, isFront: true }
+                            }
+                            return card
+                    }) }
                 } else {
-                    console.log('SAME CARD')
+                    // No match :(
+                    setTimeout(() => {
+                        console.log('No match')
+                        store.dispatch(unflipCard(index))
+                        store.dispatch(unflipCard(state.selectedFirst))
+                        // return { ...state, selectedFirst: null, selectedCard: null, cards: state.cards.map((card) => {
+                        //     if (!card.matched) {
+                        //         return { ...card, isFront: false }
+                        //     }
+                        // })}
+                    }, 1000)
                 }
             }
-
-            return { ...state, cards: cardSet, selectedCard: selectedCard, selectedFirst: selectedFirst}
-
-
         // case FLIP_CARD:
+
         //     const cardSet = [...state.cards]
-
-        //     // flips the card on click
-        //     cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
             
+        //     // flip card action
+        //     cardSet[action.payload.index].isFront = !cardSet[action.payload.index].isFront
+
         //     let selectedCard = { ...state.selectedCard }
+        //     let selectedFirst = { ...state.selectedFirst }
 
-        //     if (state.selectedCard != null) {
-        //         if (selectedCard.image != cardSet[action.payload.index].image) {
-        //             // more gross
-        //             cardSet[selectedCard.index].isFront = false
-        //             cardSet[action.payload.index].isFront = false 
+        //     selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
 
-        //             // selectedCard = null
-        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
-        //         } else {
-        //             cardSet[selectedCard.index].matched = true
-        //             cardSet[action.payload.index].matched = true 
-        //             // selectedCard = null
-        //             selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+        //     console.log(selectedCard, state.selectedFirst)
+        //     // if selectedFirst is null
+        //     if (!state.selectedFirst) {
+        //         selectedFirst = selectedCard
+        //         console.log(`First ${selectedFirst.image}`)
+
+        //     // if selectedFirst not null
+        //     } else if (state.selectedFirst) {
+        //         if (selectedCard.index == selectedFirst.index) {
+        //             console.log('SAME CARD')
+        //             return state
         //         }
-        //     } else {
-        //         selectedCard = { ...cardSet[action.payload.index], index: action.payload.index }
+
+        //         // // if selectedCard not the exact card as selectedFirst
+        //         // if (selectedCard.index !== selectedFirst.index) {
+        //         //     // if current selected and first don't match
+        //         //     if (selectedCard.image !== state.selectedFirst.image) {
+        //         //         cardSet[state.selectedFirst.index].isFront = false
+        //         //         cardSet[selectedCard.index].isFront = false
+
+        //         //         console.log(selectedFirst.image, selectedCard.image)
+        //         //         console.log(`Second ${selectedCard.image} - No match`)
+                        
+        //         //         return { ...state, cards: cardSet, selectedCard:null, selectedFirst: null}
+        //         //     } else {
+        //         //         console.log(selectedFirst.image, selectedCard.image)
+        //         //         console.log('MATCH')
+
+        //         //         cardSet[selectedFirst.index].matched = true
+        //         //         cardSet[selectedCard.index].matched = true 
+
+        //         //         return { ...state, cards: cardSet, selectedCard: null, selectedFirst: null}
+        //         //     }
+        //         // } else {
+        //         //     console.log('SAME CARD')
+        //         // }
         //     }
 
-        //     return { ...state, cards: cardSet, selectedCard } //, selectedFirst, selectedSecond }
+            // return { ...state, cards: cardSet, selectedCard: selectedCard, selectedFirst: selectedFirst}
 
         default:
             return state

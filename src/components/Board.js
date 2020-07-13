@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import shuffle from 'shuffle-array';
+import { shuffleCards } from '../actions'
 
 import Card from './Card';
 
@@ -25,6 +26,11 @@ function Board(props) {
 
     return (
         <div>
+            <input 
+                type="button" 
+                className='restart' 
+                onClick={() => {shuffleCards(cardSet)}}
+                value='reset'/>
             <h3>Selected Card: { selectedCard ? selectedCard.image : ''}</h3>
             <div className="board">
                 {cardSet}
@@ -43,9 +49,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = () => {
-    return {
-        // put shuffle 
-    }
+    return { shuffleCards }
 }
 
 
