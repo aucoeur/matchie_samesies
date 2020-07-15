@@ -19,7 +19,7 @@ const gameReducer = (state = initState, action) => {
 
         case UNFLIP:
             // unflips card at index
-            console.log('unflip')
+
             const theCards = [ ...state.cards ]
             
             theCards[action.payload.index].isFront = false
@@ -37,9 +37,11 @@ const gameReducer = (state = initState, action) => {
             // if selectedCard is first
             if (state.selectedFirst == null) {
                 return { ...state, cards: cardSet, selectedFirst: index }
+
             // if selectedCard is exact same as selectedFirst
             } else if ( state.selectedFirst === index ) {
                 return state
+                
             // else compare cards
             } else {
                 // if the two card images are same
@@ -56,11 +58,10 @@ const gameReducer = (state = initState, action) => {
                 } else {
                     // No match :(
                     setTimeout(() => {
-                        console.log('No match')
                         store.dispatch(unflipCard(index))
                         store.dispatch(unflipCard(state.selectedFirst))
 
-                    }, 500)
+                    }, 400)
                     return { ...state, cards: cardSet, selectedFirst: null, selectedCard: null }
                 }
             }

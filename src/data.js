@@ -5,9 +5,8 @@ function generateCards() {
     const randomColors = randomColor({
         count: 8,
         luminosity: 'bright',
-        // format: 'rgb' // e.g. 'rgb(225,200,20)'
+        // format: 'rgb'
         });
-
 
     const images = [
         "daisy_mae.png",
@@ -20,7 +19,7 @@ function generateCards() {
         "truffles.png"
     ]
     const backSide = randomColor(
-        {luminosity: 'dark', hue: 'blue'});
+        {luminosity: 'dark', hue: 'blue', format: 'rgb'});
 
     const randomCards = randomColors.map((color, i) => {
         return {
@@ -32,7 +31,7 @@ function generateCards() {
         }
     })
 
-    //  garbage way to deep copy
+    //  'garbage' way to deep copy
     const secondCards = JSON.parse(JSON.stringify(randomCards))
 
     const cardPairs = [...randomCards, ...secondCards]
@@ -41,6 +40,4 @@ function generateCards() {
     return shuffle(cardPairs)
 }
 
-// export default shuffle(cardPairs);
-// export default cardPairs
 export default generateCards;

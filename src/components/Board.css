@@ -1,7 +1,19 @@
 .board {
-  /* width: calc(100% - 80px); */
+  width: calc(100% - 80px);
   margin: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
+}
+
+.restart {
+  border: none;
+  font-size: .65em;
+  padding: 0.4em;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.restart:hover {
+  background-color:  rgba(0, 129, 250, 0.65)!important;
 }

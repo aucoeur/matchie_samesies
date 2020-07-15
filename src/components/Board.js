@@ -7,9 +7,9 @@ import Card from './Card';
 
 import './Board.css';
 
-
 function Board(props) {
     const { cards, shuffleCards } = props
+    const { backColor } = cards[0]
     
     const cardSet = cards.map((card, i) => {
         return (
@@ -21,20 +21,20 @@ function Board(props) {
         
     })
 
-    // const shuffled = shuffle(cardSet)
-
     return (
         <div>
             <input 
                 type="button" 
-                className='restart' 
+                className='restart'
+                style= {
+                    { backgroundColor: `${backColor}` }
+                }
                 onClick={() => {
                     return shuffleCards(cards)
                     }}
                 value='reset'/>
             <div className="board">
                 {cardSet}
-                {/* {shuffled} */}
             </div>
         </div>
     )
@@ -51,7 +51,5 @@ const mapStateToProps = state => {
 const mapDispatchToProps = () => {
     return { shuffleCards }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps())(Board);

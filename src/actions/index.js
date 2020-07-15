@@ -26,11 +26,3 @@ export function unflipCard(index) {
         payload: { index }
     }
 }
-
-// export function flipCardTimeout(index) {
-//     return function (dispatch) {
-//         setTimeout(() => {
-//             dispatch(flipCard(index))
-//         }, 1000)
-//     }
-// }

@@ -9,8 +9,6 @@ function Card(props) {
     const { i, flipCard, cards } = props
     const { color, image, isFront, backColor, matched } = cards[i]
 
-    // console.log(cards[i])
-
     const front = {
         backgroundColor: `${color}`,
         backgroundImage: `url(${process.env.PUBLIC_URL}/ac/${ image })`
