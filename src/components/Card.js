@@ -26,7 +26,7 @@ function Card(props) {
             id={i}
             onClick={ matched ? null : () => {
                 return flipCard(i);
-            } }
+            }}
             className="card" 
             style={ isFront ? front : back }> 
         </div>

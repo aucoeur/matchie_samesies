@@ -1,11 +1,14 @@
-import { SHUFFLE_CARDS, FLIP_CARD, UNFLIP, flipCard, unflipCard } from '../actions'; //
+import { SHUFFLE_CARDS, FLIP_CARD, UNFLIP, shuffleCards, unflipCard } from '../actions'; //
 import shuffle from 'shuffle-array';
-import cardPairs from '../data';
+// import cardPairs from '../data';
+import generateCards from '../data';
 
 import { store } from '../index';
 
+// let cardPairs =;
+
 const initState = {
-    cards: cardPairs,
+    cards:  generateCards(),
     selectedCard: null,
     selectedFirst: null,
 }
@@ -13,18 +16,20 @@ const initState = {
 const gameReducer = (state = initState, action) => {
     switch (action.type) {
         case SHUFFLE_CARDS:
-            const cardPairs = initState.cards
-            const shuffledCards = shuffle(cardPairs)
-            return { ...state, cards: shuffledCards }
+            let cards = [ ...state.cards ]
+            console.log('shuffle')
+            cards = generateCards()
+            return { ...state, cards: cards , selectedCard: null, selectedFirst: null }
+
 
         case UNFLIP:
             // unflips card at index
             console.log('unflip')
-            return { ...state, selectedFirst: null, selectedCard: null, 
-                        cards: state.cards.map((card) => {
-                            return { ...card, isFront: false}
-                            })
-                    }
+            const cards1 = [ ...state.cards ]
+            
+            cards1[action.payload.index].isFront = false
+
+            return { ...state, cards: cards1, selectedFirst: null, selectedCard: null }
 
         case FLIP_CARD:
             console.log(FLIP_CARD)
@@ -36,18 +41,17 @@ const gameReducer = (state = initState, action) => {
             
             // if the index = first selected
             if (state.selectedFirst == null) {
-                
-                // flip card action
-                // cardSet[index].isFront = !cardSet[index].isFront
                 return { ...state, cards: cardSet, selectedFirst: index }
             } else if ( state.selectedFirst === index ) {
                 return state
             } else {
                 if (state.cards[index].image === state.cards[state.selectedFirst].image) {
                     // cards match!
+                    console.log(`match! ${state.cards[state.selectedFirst].image}`)
+
                     return { ...state, selectedFirst: null, 
                         cards: state.cards.map((card) => {
-                            if (card.index === index || card.index === state.selectedFirst) {
+                            if (card.image === state.cards[state.selectedFirst].image) {
                                 return { ...card, matched: true, isFront: true }
                             }
                             return card
@@ -65,7 +69,7 @@ const gameReducer = (state = initState, action) => {
                         //     }
                         // })}
                     }, 500)
-                    return { ...state, cards: cardSet, selectedFirst: index }
+                    return { ...state, cards: cardSet, selectedFirst: null, selectedCard: null }
                 }
             }
         // case FLIP_CARD:
