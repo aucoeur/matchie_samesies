@@ -16,20 +16,29 @@ const gameReducer = (state = initState, action) => {
             const cardPairs = initState.cards
             const shuffledCards = shuffle(cardPairs)
             return { ...state, cards: shuffledCards }
+
         case UNFLIP:
             // unflips card at index
             console.log('unflip')
-            return state
+            return { ...state, selectedFirst: null, selectedCard: null, 
+                        cards: state.cards.map((card) => {
+                            return { ...card, isFront: false}
+                            })
+                    }
+
         case FLIP_CARD:
             console.log(FLIP_CARD)
             const index = action.payload.index
+            const cardSet = [...state.cards]
+            
+            // flip card action
+            cardSet[index].isFront = !cardSet[index].isFront
             
             // if the index = first selected
             if (state.selectedFirst == null) {
-                const cardSet = [...state.cards]
                 
                 // flip card action
-                cardSet[index].isFront = !cardSet[index].isFront
+                // cardSet[index].isFront = !cardSet[index].isFront
                 return { ...state, cards: cardSet, selectedFirst: index }
             } else if ( state.selectedFirst === index ) {
                 return state
@@ -45,6 +54,7 @@ const gameReducer = (state = initState, action) => {
                     }) }
                 } else {
                     // No match :(
+                    // cardSet[index].isFront = !cardSet[index].isFront
                     setTimeout(() => {
                         console.log('No match')
                         store.dispatch(unflipCard(index))
@@ -54,7 +64,8 @@ const gameReducer = (state = initState, action) => {
                         //         return { ...card, isFront: false }
                         //     }
                         // })}
-                    }, 1000)
+                    }, 500)
+                    return { ...state, cards: cardSet, selectedFirst: index }
                 }
             }
         // case FLIP_CARD:
