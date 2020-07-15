@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/samesies/static/css/main.8ba33518.chunk.css",
-    "main.js": "/samesies/static/js/main.4207a694.chunk.js",
-    "main.js.map": "/samesies/static/js/main.4207a694.chunk.js.map",
+    "main.css": "/samesies/static/css/main.2ba29e93.chunk.css",
+    "main.js": "/samesies/static/js/main.37473d3c.chunk.js",
+    "main.js.map": "/samesies/static/js/main.37473d3c.chunk.js.map",
     "runtime-main.js": "/samesies/static/js/runtime-main.74066a44.js",
     "runtime-main.js.map": "/samesies/static/js/runtime-main.74066a44.js.map",
-    "static/js/2.5526f4f5.chunk.js": "/samesies/static/js/2.5526f4f5.chunk.js",
-    "static/js/2.5526f4f5.chunk.js.map": "/samesies/static/js/2.5526f4f5.chunk.js.map",
+    "static/js/2.139bd4f5.chunk.js": "/samesies/static/js/2.139bd4f5.chunk.js",
+    "static/js/2.139bd4f5.chunk.js.map": "/samesies/static/js/2.139bd4f5.chunk.js.map",
     "index.html": "/samesies/index.html",
-    "precache-manifest.2973ae1e695f3b44b1ad7f5120e9c8c4.js": "/samesies/precache-manifest.2973ae1e695f3b44b1ad7f5120e9c8c4.js",
+    "precache-manifest.41db9183cee381a75a5525ac7af96a67.js": "/samesies/precache-manifest.41db9183cee381a75a5525ac7af96a67.js",
     "service-worker.js": "/samesies/service-worker.js",
-    "static/css/main.8ba33518.chunk.css.map": "/samesies/static/css/main.8ba33518.chunk.css.map",
-    "static/js/2.5526f4f5.chunk.js.LICENSE.txt": "/samesies/static/js/2.5526f4f5.chunk.js.LICENSE.txt"
+    "static/css/main.2ba29e93.chunk.css.map": "/samesies/static/css/main.2ba29e93.chunk.css.map",
+    "static/js/2.139bd4f5.chunk.js.LICENSE.txt": "/samesies/static/js/2.139bd4f5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.74066a44.js",
-    "static/js/2.5526f4f5.chunk.js",
-    "static/css/main.8ba33518.chunk.css",
-    "static/js/main.4207a694.chunk.js"
+    "static/js/2.139bd4f5.chunk.js",
+    "static/css/main.2ba29e93.chunk.css",
+    "static/js/main.37473d3c.chunk.js"
   ]
 }
