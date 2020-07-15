@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a685f05e4665047a485146e5317b6f56",
+    "revision": "96d191620aa9078a1d514e1b555818e7",
     "url": "/samesies/index.html"
   },
   {
-    "revision": "97a033537bc529f28e10",
+    "revision": "e758c77ceaa6bb850633",
     "url": "/samesies/static/css/main.8ba33518.chunk.css"
   },
   {
-    "revision": "c349c7446c91e1f40939",
-    "url": "/samesies/static/js/2.520ed415.chunk.js"
+    "revision": "6d9a37e64a16c210cad0",
+    "url": "/samesies/static/js/2.5526f4f5.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/samesies/static/js/2.520ed415.chunk.js.LICENSE.txt"
+    "url": "/samesies/static/js/2.5526f4f5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "97a033537bc529f28e10",
-    "url": "/samesies/static/js/main.514ec843.chunk.js"
+    "revision": "e758c77ceaa6bb850633",
+    "url": "/samesies/static/js/main.4207a694.chunk.js"
   },
   {
     "revision": "7ca707e4b55ffe9ed9f2",
