@@ -16,9 +16,9 @@ function Card(props) {
 
     const back = {
         backgroundColor: `${backColor}`, 
-        backgroundImage: `url(${process.env.PUBLIC_URL}/ac/leaf_aa.png)`,
-        backgroundSize: 'cover',
-        backgroundPosition: '50%'
+        backgroundImage: `url(${process.env.PUBLIC_URL}/ac/leaf_mask.png)`,
+        // backgroundSize: 'cover',
+        // backgroundPosition: '50%'
     }
 
     return (
